@@ -6,9 +6,10 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
     console.log(cartProduct)
 
 
-    const totalPrice = cartProduct.reduce((pre,current)=>pre+current.price,0);
+    const totalPrice = cartProduct.length > 0 ? cartProduct.reduce((pre,current)=>pre+current.price,0) : 0;
     const shippingCharge = cartProduct.length > 0 ? cartProduct.reduce((pre,current)=>pre+current.shipping,0) : 0;
-    const tax = cartProduct.length > 0 ? (totalPrice *10 /100) : 0;
+    const tax = cartProduct.length > 0 ? Number((totalPrice *10 /100).toFixed(3)) : 0;
+    const grandTotal = cartProduct.length > 0 ? totalPrice+shippingCharge+tax : 0;
     return (
         <div className={cartProduct.length > 0 ? "" : "d-none"}>
             <h3 className='text-center my-3'>Cart Summery</h3>
@@ -43,7 +44,7 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
                 <hr className='my-1' />
                 <div className='d-flex align-items-center justify-content-between'> 
                     <h4 className='my-1 '>Grand Total:   </h4>
-                    <h6 className='my-1 '>${totalPrice+shippingCharge+tax}</h6>
+                    <h6 className='my-1 '>${grandTotal}</h6>
                 </div>
 
                 <div className='manage-info mt-4'>
