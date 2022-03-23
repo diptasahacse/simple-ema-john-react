@@ -19,7 +19,7 @@ const Product = ({product,addToCartHandler}) => {
                         <p className='m-0'>Rating : {ratings}</p>
                     </div>
                 </div>
-                <div className="card-footer">
+                <div className="card-footer bg-white border-0">
                     <button onClick={()=>addToCartHandler(product)} className="btn btn-primary form-control">
                         
                         <span className='me-1'>Add to cart</span>
