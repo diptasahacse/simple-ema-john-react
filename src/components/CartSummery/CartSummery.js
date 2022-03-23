@@ -9,7 +9,7 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
     const shippingCharge = totalPrice > 0 ? 5 : 0;
     const tax = totalPrice > 0 ? 114 : 0;
     return (
-        <div className='cart-container'>
+        <div className={cartProduct.length > 0 ? "" : "d-none"}>
             <h3 className='text-center my-3'>Cart Summery</h3>
             <div className={cartProduct.length === 0 ? "d-none":'cart-items m-1 p-2'}>
                 {
