@@ -8,7 +8,7 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
 
     const totalPrice = cartProduct.reduce((pre,current)=>pre+current.price,0);
     const shippingCharge = cartProduct.length > 0 ? cartProduct.reduce((pre,current)=>pre+current.shipping,0) : 0;
-    const tax = totalPrice > 0 ? 114 : 0;
+    const tax = cartProduct.length > 0 ? (totalPrice *10 /100) : 0;
     return (
         <div className={cartProduct.length > 0 ? "" : "d-none"}>
             <h3 className='text-center my-3'>Cart Summery</h3>
