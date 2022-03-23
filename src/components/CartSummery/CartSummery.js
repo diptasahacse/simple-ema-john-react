@@ -7,7 +7,11 @@ const CartSummery = ({cartProduct}) => {
     return (
         <div>
             <h3 className='text-center my-3'>Cart Summery</h3>
-            <div className='cart-items  m-2'>
+            <div className='cart-items m-1 p-2'>
+                {
+
+                    cartProduct.map((item,index) => <MakeList key={index} item={item} index={index}></MakeList>)
+                }
 
             </div>
             <div className="cart-info-box mt-4 p-4">
@@ -43,5 +47,14 @@ const CartSummery = ({cartProduct}) => {
         </div>
     );
 };
+const MakeList = ({item,index}) =>{
+    return(
+        <div className='d-flex justify-content-start bg-warning m-2 p-2 rounded'>
+            <strong className='me-2'>{index+1}</strong>
+            <p>{item.name}</p>
+
+        </div>
+    );
+}
 
 export default CartSummery;
