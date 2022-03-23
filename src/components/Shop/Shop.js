@@ -17,6 +17,11 @@ const Shop = () => {
         const totalCartState = [...cartProduct,product];
         setCartProduct(totalCartState)
     }
+    const makeEmptyList = () =>{
+        setCartProduct([])
+        
+
+    }
 
     return (
         <div>
@@ -33,7 +38,7 @@ const Shop = () => {
                 </div>
                 <div className="col-3">
                     <div className='module-summary-section'>
-                        <CartSummery cartProduct={cartProduct}></CartSummery>
+                        <CartSummery makeEmptyList={makeEmptyList} cartProduct={cartProduct}></CartSummery>
                     </div>
                 </div>
             </div>

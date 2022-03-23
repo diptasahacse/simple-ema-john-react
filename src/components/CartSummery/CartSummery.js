@@ -1,9 +1,15 @@
 import React from 'react';
 import './CartSummery.css'
-const CartSummery = ({cartProduct}) => {
+const CartSummery = ({cartProduct,makeEmptyList}) => {
+
+    
+
+
+
+
     const totalPrice = cartProduct.reduce((pre,current)=>pre+current.price,0);
-    const shippingCharge = 5;
-    const tax = 114;
+    const shippingCharge = totalPrice > 0 ? 5 : 0;
+    const tax = totalPrice > 0 ? 114 : 0;
     return (
         <div>
             <h3 className='text-center my-3'>Cart Summery</h3>
@@ -40,9 +46,16 @@ const CartSummery = ({cartProduct}) => {
                     <h4 className='my-1 '>Grand Total:   </h4>
                     <h6 className='my-1 '>${totalPrice+shippingCharge+tax}</h6>
                 </div>
+
+                <div className='manage-info mt-4'>
+                    <button onClick={makeEmptyList} className='btn btn-danger form-control mb-3'>Clear List</button>
+                    <button className='btn btn-info form-control text-light'>Review Order</button>
+
+                </div>
                 
 
             </div>
+
             
         </div>
     );
