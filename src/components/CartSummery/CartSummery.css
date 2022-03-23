@@ -1,6 +1,6 @@
 
 .cart-items{
-    max-height: 200px;
+    max-height: 150px;
     background-color: #ECEFF1;
     border-radius: 10px;
     overflow-y: scroll;
