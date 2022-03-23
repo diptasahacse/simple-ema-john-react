@@ -7,7 +7,7 @@ const CartSummery = ({cartProduct}) => {
     return (
         <div>
             <h3 className='text-center my-3'>Cart Summery</h3>
-            <div className='cart-items m-1 p-2'>
+            <div className={cartProduct.length === 0 ? "d-none":'cart-items m-1 p-2'}>
                 {
 
                     cartProduct.map((item,index) => <MakeList key={index} item={item} index={index}></MakeList>)

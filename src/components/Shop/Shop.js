@@ -14,8 +14,8 @@ const Shop = () => {
     },[])
 
     const addToCartHandler = (product)=>{
-        const currentState = [...cartProduct,product];
-        setCartProduct(currentState)
+        const totalCartState = [...cartProduct,product];
+        setCartProduct(totalCartState)
     }
 
     return (
