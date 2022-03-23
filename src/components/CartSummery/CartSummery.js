@@ -3,10 +3,11 @@ import React from 'react';
 import './CartSummery.css'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 const CartSummery = ({cartProduct,makeEmptyList}) => {
+    console.log(cartProduct)
 
 
     const totalPrice = cartProduct.reduce((pre,current)=>pre+current.price,0);
-    const shippingCharge = totalPrice > 0 ? 5 : 0;
+    const shippingCharge = cartProduct.length > 0 ? cartProduct.reduce((pre,current)=>pre+current.shipping,0) : 0;
     const tax = totalPrice > 0 ? 114 : 0;
     return (
         <div className={cartProduct.length > 0 ? "" : "d-none"}>
