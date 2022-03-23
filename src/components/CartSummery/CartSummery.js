@@ -1,10 +1,8 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import './CartSummery.css'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 const CartSummery = ({cartProduct,makeEmptyList}) => {
-
-    
-
-
 
 
     const totalPrice = cartProduct.reduce((pre,current)=>pre+current.price,0);
@@ -48,7 +46,10 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
                 </div>
 
                 <div className='manage-info mt-4'>
-                    <button onClick={makeEmptyList} className='btn btn-danger form-control mb-3'>Clear List</button>
+                    <button onClick={makeEmptyList} className='btn btn-danger form-control mb-3'>
+                        <span className='me-1'>Clear List</span>
+                    <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
+                    </button>
                     <button className='btn btn-info form-control text-light'>Review Order</button>
 
                 </div>
