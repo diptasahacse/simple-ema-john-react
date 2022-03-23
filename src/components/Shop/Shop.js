@@ -38,7 +38,7 @@ const Shop = () => {
 
                 </div>
                 <div className="col-3">
-                    <div className='module-summary-section'>
+                    <div className='cart-summary-section'>
                         <CartSummery makeEmptyList={makeEmptyList} cartProduct={cartProduct}></CartSummery>
                     </div>
                 </div>

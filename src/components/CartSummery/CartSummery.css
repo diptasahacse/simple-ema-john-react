@@ -1,6 +1,10 @@
+
 .cart-items{
     max-height: 200px;
     background-color: #ECEFF1;
     border-radius: 10px;
     overflow-y: scroll;
+}
+.item-name{
+    font-size: 12px;
 }

@@ -9,7 +9,7 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
     const shippingCharge = totalPrice > 0 ? 5 : 0;
     const tax = totalPrice > 0 ? 114 : 0;
     return (
-        <div>
+        <div className='cart-container'>
             <h3 className='text-center my-3'>Cart Summery</h3>
             <div className={cartProduct.length === 0 ? "d-none":'cart-items m-1 p-2'}>
                 {
@@ -63,9 +63,9 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
 };
 const MakeList = ({item,index}) =>{
     return(
-        <div className='d-flex justify-content-start bg-warning m-2 p-2 rounded'>
+        <div className='d-flex justify-content-start align-items-center bg-warning m-2 p-2 rounded'>
             <strong className='me-2'>{index+1}</strong>
-            <p>{item.name}</p>
+            <p className='m-0 item-name'>{item.name}</p>
 
         </div>
     );
