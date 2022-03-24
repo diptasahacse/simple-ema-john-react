@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { addToLocalStorage, getDataFromLocalStorage } from '../../utilities/ManageDB';
 import CartSummery from '../CartSummery/CartSummery';
 import Product from '../Product/Product';
 import './Shop.css';
@@ -9,14 +10,33 @@ const Shop = () => {
     const [cartProduct,setCartProduct] = useState([])
 
     useEffect(()=>{
+        
         fetch('products.json')
         .then(res => res.json())
-        .then(products => setProducts(products))
+        .then(products => {
+            setProducts(products)
+            
+
+        })
     },[])
+
+    useEffect(()=>{
+        
+        const storedData = getDataFromLocalStorage();
+        for (const key in storedData) {
+            const singlePro = products.find(element => element.id === key);
+            if(singlePro){
+                console.log(singlePro)
+
+            }
+            
+        }
+    },[products])
 
     const addToCartHandler = (product)=>{
         const totalCartState = [...cartProduct,product];
-        setCartProduct(totalCartState)
+        setCartProduct(totalCartState);
+        addToLocalStorage(product)
     }
     const makeEmptyList = () =>{
         setCartProduct([])
