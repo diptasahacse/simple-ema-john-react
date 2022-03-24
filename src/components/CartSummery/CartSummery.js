@@ -3,26 +3,23 @@ import React from 'react';
 import './CartSummery.css'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 const CartSummery = ({cartProduct,makeEmptyList}) => {
+    // if(cartProduct.length > 0){
+    //     const newArr = [...cartProduct]
+    //     console.log(newArr)
+    // }
 
+    console.log(cartProduct)
 
+    let totalPrice = cartProduct.reduce((pre,cur)=>pre+cur.price,0);
+    let tax = Number((totalPrice*10/100).toFixed(2));
+    let shippingPrice = cartProduct.reduce((pre,cur)=>pre+cur.shipping,0);
+    let grandTotal = totalPrice + tax + shippingPrice;
 
-    
-
-
-    const totalPrice = cartProduct.length > 0 ? cartProduct.reduce((pre,current)=>pre+current.price,0) : 0;
-    const shippingCharge = cartProduct.length > 0 ? cartProduct.reduce((pre,current)=>pre+current.shipping,0) : 0;
-    const tax = cartProduct.length > 0 ? Number((totalPrice *10 /100).toFixed(3)) : 0;
-    const grandTotal = cartProduct.length > 0 ? totalPrice+shippingCharge+tax : 0;
     return (
-        <div className={cartProduct.length > 0 ? "" : "d-none"}>
+        
+        <div>
             <h3 className='text-center my-3'>Cart Summery</h3>
-            <div className={cartProduct.length === 0 ? "d-none":'cart-items m-1 p-2'}>
-                {
-
-                    cartProduct.map((item,index) => <MakeList key={index} item={item} index={index}></MakeList>)
-                }
-
-            </div>
+        
             <div className="cart-info-box mt-4 p-4">
                 <div className='d-flex align-items-center justify-content-between mb-4'>
                     <h6 className='my-1 '>Selected Items: </h6>
@@ -36,7 +33,7 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
                 <hr className='my-1' />
                 <div className='d-flex align-items-center justify-content-between'> 
                     <h6 className='my-1 '>Total Shipping Charge: </h6>
-                    <span>${shippingCharge}</span>
+                    <span>${shippingPrice}</span>
                 </div>
                 <hr className='my-1' />
                 <div className='d-flex align-items-center justify-content-between'> 
@@ -66,14 +63,6 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
         </div>
     );
 };
-const MakeList = ({item,index}) =>{
-    return(
-        <div className='d-flex justify-content-start align-items-center bg-warning m-2 p-2 rounded'>
-            <strong className='me-2'>{index+1}</strong>
-            <p className='m-0 item-name'>{item.name}</p>
 
-        </div>
-    );
-}
 
 export default CartSummery;

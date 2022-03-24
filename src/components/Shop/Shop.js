@@ -20,29 +20,20 @@ const Shop = () => {
         })
     },[])
 
-    useEffect(()=>{
-        
-        const storedData = getDataFromLocalStorage();
-        for (const key in storedData) {
-            const singlePro = products.find(element => element.id === key);
-            if(singlePro){
-                console.log(singlePro)
-
-            }
-            
-        }
-    },[products])
 
     const addToCartHandler = (product)=>{
         const totalCartState = [...cartProduct,product];
         setCartProduct(totalCartState);
-        addToLocalStorage(product)
+        // console.log(cartProduct)
+        // addToLocalStorage(product)
+        // console.log(cartProduct);
     }
     const makeEmptyList = () =>{
         setCartProduct([])
         
 
     }
+    
 
     return (
         <div>
