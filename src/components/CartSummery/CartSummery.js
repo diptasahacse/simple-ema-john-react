@@ -7,13 +7,30 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
     //     const newArr = [...cartProduct]
     //     console.log(newArr)
     // }
-
     console.log(cartProduct)
+    
+    let totalPrice = 0;
+    let totalquantity = 0;
+    let shippingPrice = 0;
+    let tax = 0;
+    for (const product of cartProduct) {
+        totalquantity+= product.quantity;
+        totalPrice += (product.quantity * product.price);
+        shippingPrice += (product.quantity * product.shipping);
+        tax+= (product.price * (5 / 100)) * product.quantity;
+    }
 
-    let totalPrice = cartProduct.reduce((pre,cur)=>pre+cur.price,0);
-    let tax = Number((totalPrice*10/100).toFixed(2));
-    let shippingPrice = cartProduct.reduce((pre,cur)=>pre+cur.shipping,0);
-    let grandTotal = totalPrice + tax + shippingPrice;
+    
+
+    
+    
+    
+    let grandTotal = totalPrice + shippingPrice + tax;
+
+    // let totalPrice = cartProduct.reduce((pre,cur)=>pre+cur.price,0);
+    // let tax = Number((totalPrice*10/100).toFixed(2));
+    // let shippingPrice = cartProduct.reduce((pre,cur)=>pre+cur.shipping,0);
+    // let grandTotal = totalPrice + tax + shippingPrice;
 
     return (
         
@@ -23,7 +40,7 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
             <div className="cart-info-box mt-4 p-4">
                 <div className='d-flex align-items-center justify-content-between mb-4'>
                     <h6 className='my-1 '>Selected Items: </h6>
-                    <span>{cartProduct.length}</span>
+                    <span>{totalquantity}</span>
                 </div>
                 
                 <div className='d-flex align-items-center justify-content-between'>

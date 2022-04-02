@@ -53,4 +53,26 @@ const getDataFromLocalStorage = () =>{
     }
     return shoppingCart;
 }
-export {add as addToLocalStorage,remove as removeFromLocalStorage,getDataFromLocalStorage}
+const addToDataBase = product =>{
+    const {id} = product;
+    let db = {};
+    const storedTracker = localStorage.getItem('shopping-cart');
+    if(storedTracker){
+        db = JSON.parse(storedTracker);
+    }
+    if (id in db){
+        db[id] = db[id] + 1;
+
+    }
+    else{
+        db[id] = 1;
+
+    }
+    localStorage.setItem('shopping-cart',JSON.stringify(db))
+    
+}
+const makeEmpty = ()=>{
+    localStorage.removeItem('shopping-cart');
+
+}
+export {add as addToLocalStorage,remove as removeFromLocalStorage,getDataFromLocalStorage, addToDataBase,makeEmpty}
