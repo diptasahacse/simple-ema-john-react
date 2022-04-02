@@ -3,11 +3,7 @@ import React from 'react';
 import './CartSummery.css'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 const CartSummery = ({cartProduct,makeEmptyList}) => {
-    // if(cartProduct.length > 0){
-    //     const newArr = [...cartProduct]
-    //     console.log(newArr)
-    // }
-    console.log(cartProduct)
+    
     
     let totalPrice = 0;
     let totalquantity = 0;
@@ -26,11 +22,6 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
     
     
     let grandTotal = totalPrice + shippingPrice + tax;
-
-    // let totalPrice = cartProduct.reduce((pre,cur)=>pre+cur.price,0);
-    // let tax = Number((totalPrice*10/100).toFixed(2));
-    // let shippingPrice = cartProduct.reduce((pre,cur)=>pre+cur.shipping,0);
-    // let grandTotal = totalPrice + tax + shippingPrice;
 
     return (
         
