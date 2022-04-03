@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import useProducts from '../../hooks/useProducts';
 import { addToDataBase, addToLocalStorage, getDataFromLocalStorage, makeEmpty } from '../../utilities/ManageDB';
 import CartSummery from '../CartSummery/CartSummery';
 import Product from '../Product/Product';
@@ -6,20 +7,9 @@ import './Shop.css';
 
 
 const Shop = () => {
-    const [products, setProducts] = useState([]);
-    const [cartProduct, setCartProduct] = useState([])
+    const [products, setProducts] = useProducts();
+    const [cartProduct, setCartProduct] = useState([]);
 
-
-    useEffect(() => {
-
-        fetch('products.json')
-            .then(res => res.json())
-            .then(products => {
-                setProducts(products)
-
-
-            })
-    }, [])
     useEffect(() => {
         let localStoredCart = getDataFromLocalStorage();
         let newArr = [];
