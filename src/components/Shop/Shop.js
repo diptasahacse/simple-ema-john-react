@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
 import { addToDataBase, addToLocalStorage, getDataFromLocalStorage, makeEmpty } from '../../utilities/ManageDB';
@@ -30,12 +31,7 @@ const Shop = () => {
 
         addToDataBase(product)
     }
-    const makeEmptyList = () => {
-        setCartProduct([])
-        makeEmpty()
-
-
-    }
+    
 
 
 
@@ -54,7 +50,11 @@ const Shop = () => {
                 </div>
                 <div className="col-3">
                     <div className='cart-summary-section'>
-                        <CartSummery makeEmptyList={makeEmptyList} cartProduct={cartProduct}></CartSummery>
+                        <CartSummery cartProduct={cartProduct}>
+                            <Link to={'/orders'}>
+                                <button  className='btn btn-info form-control text-light'>Order Review</button>
+                            </Link>
+                        </CartSummery>
                     </div>
                 </div>
             </div>
