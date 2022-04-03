@@ -25,18 +25,13 @@ const add = (element)=>{
 }
 // remove
 const remove = (id) =>{
-    let pId = id;
     let localStorageObj = JSON.parse(localStorage.getItem('shopping-cart'));
     if(localStorageObj){
-        if(localStorageObj[pId]){
-            delete localStorageObj[pId];
+        if(localStorageObj[id]){
+            delete localStorageObj[id];
             localStorage.setItem('shopping-cart',JSON.stringify(localStorageObj))
-            
-
         }
-        else{
-            alert("This item is not present in your cart")
-        }
+        
         
     }
     
@@ -75,4 +70,4 @@ const makeEmpty = ()=>{
     localStorage.removeItem('shopping-cart');
 
 }
-export {add as addToLocalStorage,remove as removeFromLocalStorage,getDataFromLocalStorage, addToDataBase,makeEmpty}
+export {add as addToLocalStorage, remove as removeFromLocalStorage,getDataFromLocalStorage, addToDataBase,makeEmpty}

@@ -1,20 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-const ReviewItem = ({ cart }) => {
+const ReviewItem = ({ cart,removeItemHandler }) => {
     console.log(cart)
 
     return (
         <div>
             {
-                cart.map(product => <MakeItem key={product.id} product={product}></MakeItem>)
+                cart.map(product => <MakeItem key={product.id} removeItemHandler={removeItemHandler} product={product}></MakeItem>)
             }
 
         </div>
     );
 };
-const MakeItem = ({ product }) => {
-    const { img, name, price, shipping, quantity } = product;
+const MakeItem = ({ product,removeItemHandler }) => {
+    const { img, id, name, price, shipping, quantity } = product;
     return (
         <div className='border m-3 p-2 rounded d-flex justify-content-between align-items-center'>
             <div className='d-flex'>
@@ -34,7 +34,9 @@ const MakeItem = ({ product }) => {
                     <p>Quantity: {quantity}</p>
                 </div>
                 <div>
-                    <FontAwesomeIcon className='review-item-remove-icon border border-2 border-danger p-2 rounded-circle' icon={faTrash}></FontAwesomeIcon>
+                    <button onClick={()=>{removeItemHandler(product)}} className='border-0 bg-transparent'>
+                        <FontAwesomeIcon className='review-item-remove-icon p-2 rounded-circle' icon={faTrash}></FontAwesomeIcon>
+                    </button>
                 </div>
             </div>
 
