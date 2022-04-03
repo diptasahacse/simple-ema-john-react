@@ -46,7 +46,7 @@ const CartSummery = ({cartProduct,makeEmptyList}) => {
                 <hr className='my-1' />
                 <div className='d-flex align-items-center justify-content-between'> 
                     <h6 className='my-1 '>Tax:  </h6>
-                    <span>${tax}</span>
+                    <span>${tax.toFixed(2)}</span>
                 </div>
                 <hr className='my-1' />
                 <hr className='my-1' />

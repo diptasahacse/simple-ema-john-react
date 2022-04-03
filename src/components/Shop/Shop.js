@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
 import { addToDataBase, addToLocalStorage, getDataFromLocalStorage, makeEmpty } from '../../utilities/ManageDB';
 import CartSummery from '../CartSummery/CartSummery';
@@ -8,24 +9,7 @@ import './Shop.css';
 
 const Shop = () => {
     const [products, setProducts] = useProducts();
-    const [cartProduct, setCartProduct] = useState([]);
-
-    useEffect(() => {
-        let localStoredCart = getDataFromLocalStorage();
-        let newArr = [];
-        for (const id in localStoredCart) {
-            let product = products.find(pro => pro.id === id);
-            if(product){
-                product.quantity = localStoredCart[id];
-                newArr.push(product);
-                
-            }
-            
-        }
-        setCartProduct(newArr);
-        
-    }, [products]);
-
+    const [cartProduct, setCartProduct] = useCart(products);
 
     const addToCartHandler = (product) => {
         const ifExist = cartProduct.find(eachProduct => eachProduct.id === product.id);
