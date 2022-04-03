@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.review-product-image{
+  height: 80px;
+    width: 80px;
+}
+.review-item-remove-icon{
+  font-size: 22px;
+  
+}
