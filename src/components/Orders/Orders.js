@@ -8,6 +8,7 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 const Orders = () => {
     const [products, setProducts] = useProducts()
     const [cart, setCart] = useCart(products);
+    
     let quantity = 0;
     for (const product of cart) {
         quantity += product.quantity;
