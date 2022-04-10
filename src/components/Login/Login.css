@@ -1,0 +1,19 @@
+.form-container{
+    max-width: 500px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: -10px 10px #ffe0b3;
+}
+.form-button-style{
+    background: rgba(255, 153, 0, 0.3) !important;
+}
+.or-text-before-after-style::before,
+.or-text-before-after-style::after {
+    display: inline-block;
+    content: "";
+    border-top: 1px solid gray;
+    width: 20%;
+    margin: 0 10px;
+    transform: translateY(-3px);
+    
+}
