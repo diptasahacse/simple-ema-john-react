@@ -1,12 +1,40 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import './Login.css'
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
 
 const Login = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const navigate = useNavigate();
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useSignInWithEmailAndPassword(auth);
+    const formSubmitHandler = event => {
+        // setError(event.target.value);
+        event.preventDefault();
+        signInWithEmailAndPassword(email, password)
+        
+        
+    }
+    const emailBlurHandler = event => {
+        setEmail(event.target.value);
+    }
+    const passwordBlurHandler = event => {
+        setPassword(event.target.value);
+    }
+    if (user) {
+        navigate('/shop')
+
+    }
     return (
         <div className='container'>
             <div className='d-flex justify-content-center pt-5'>
@@ -14,10 +42,10 @@ const Login = () => {
                     <h4 className='text-center'>Log In</h4>
 
                     <div>
-                        <Form>
+                        <Form onSubmit={formSubmitHandler}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email"  required />
+                                <Form.Control onBlur={emailBlurHandler} type="email" placeholder="Enter email"  required />
                                 <Form.Text className="text-muted">
                                     We'll never share your email with anyone else.
                                 </Form.Text>
@@ -25,8 +53,11 @@ const Login = () => {
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password"  required />
+                                <Form.Control onBlur={passwordBlurHandler} type="password" placeholder="Password"  required />
                             </Form.Group>
+                            {
+                                error?.message && <p className='text-danger'>{error.message}</p>
+                            }
 
                             <input className='btn form-control form-button-style' type="submit" value="Sign In" />
 
