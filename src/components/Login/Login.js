@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import './Login.css'
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
@@ -11,7 +11,7 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const navigate = useNavigate();
+
     const [
         signInWithEmailAndPassword,
         user,
@@ -31,10 +31,15 @@ const Login = () => {
     const passwordBlurHandler = event => {
         setPassword(event.target.value);
     }
-    if (user) {
-        navigate('/shop')
 
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    if(user){
+        navigate(from, {replace : true})
     }
+
     return (
         <div className='container'>
             <div className='d-flex justify-content-center pt-5'>
