@@ -4,7 +4,7 @@ import './CartSummery.css'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 const CartSummery = (props) => {
     const {cartProduct,children} = props;
-    console.log(props)
+    
     
     
     let totalPrice = 0;

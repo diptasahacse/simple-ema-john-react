@@ -6,7 +6,7 @@ const OrderSummery = ({ cart }) => {
     return (
         <div>
             <CartSummery cartProduct={cart}>
-                <Link to={'/inventory'}>
+                <Link to={'/shipment'}>
                     <button className='btn btn-info form-control text-light'>Place Order</button>
                 </Link>
             </CartSummery>
