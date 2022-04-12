@@ -5,25 +5,31 @@ import './Login.css'
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    let user = {};
+
     const [
         signInWithEmailAndPassword,
-        user,
+        emailPassUser,
         loading,
         error,
-      ] = useSignInWithEmailAndPassword(auth);
+    ] = useSignInWithEmailAndPassword(auth);
+
+    const [signInWithGoogle,signInGoogleUser] = useSignInWithGoogle(auth);
+
     const formSubmitHandler = event => {
         // setError(event.target.value);
         event.preventDefault();
         signInWithEmailAndPassword(email, password)
-        
-        
+        user = {...emailPassUser}
+
+
     }
     const emailBlurHandler = event => {
         setEmail(event.target.value);
@@ -31,13 +37,18 @@ const Login = () => {
     const passwordBlurHandler = event => {
         setPassword(event.target.value);
     }
+    const googleSignInHandler = () => {
+        signInWithGoogle()
+        user = {...signInGoogleUser}
+
+    }
 
     let navigate = useNavigate();
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
-    if(user){
-        navigate(from, {replace : true})
+    if (user) {
+        navigate(from, { replace: true })
     }
 
     return (
@@ -50,7 +61,7 @@ const Login = () => {
                         <Form onSubmit={formSubmitHandler}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
-                                <Form.Control onBlur={emailBlurHandler} type="email" placeholder="Enter email"  required />
+                                <Form.Control onBlur={emailBlurHandler} type="email" placeholder="Enter email" required />
                                 <Form.Text className="text-muted">
                                     We'll never share your email with anyone else.
                                 </Form.Text>
@@ -58,7 +69,7 @@ const Login = () => {
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control onBlur={passwordBlurHandler} type="password" placeholder="Password"  required />
+                                <Form.Control onBlur={passwordBlurHandler} type="password" placeholder="Password" required />
                             </Form.Group>
                             {
                                 error?.message && <p className='text-danger'>{error.message}</p>
@@ -73,8 +84,8 @@ const Login = () => {
                                 <p className='or-text-before-after-style'>or</p>
                             </div>
                             <div className='mt-3'>
-                                <button className='form-control btn border'>
-                                     <FontAwesomeIcon className='me-2' icon={faArrowRightLong}></FontAwesomeIcon>
+                                <button onClick={googleSignInHandler} className='form-control btn border'>
+                                    <FontAwesomeIcon className='me-2' icon={faArrowRightLong}></FontAwesomeIcon>
                                     <span>Continue with Google</span>
                                 </button>
 
