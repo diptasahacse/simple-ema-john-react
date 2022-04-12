@@ -12,22 +12,22 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    let user = {};
+    
 
     const [
         signInWithEmailAndPassword,
-        emailPassUser,
+        user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const [signInWithGoogle,signInGoogleUser] = useSignInWithGoogle(auth);
+    
 
     const formSubmitHandler = event => {
         // setError(event.target.value);
         event.preventDefault();
         signInWithEmailAndPassword(email, password)
-        user = {...emailPassUser}
+        
 
 
     }
@@ -38,8 +38,7 @@ const Login = () => {
         setPassword(event.target.value);
     }
     const googleSignInHandler = () => {
-        signInWithGoogle()
-        user = {...signInGoogleUser}
+        
 
     }
 
