@@ -5,21 +5,24 @@ import './Login.css'
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 
 
 const Login = () => {
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('');
+    const [user] = useAuthState(auth)
 
     
 
     const [
         signInWithEmailAndPassword,
-        user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+
+    const[signInWithGoogle] = useSignInWithGoogle(auth)
 
     
 
@@ -38,6 +41,7 @@ const Login = () => {
         setPassword(event.target.value);
     }
     const googleSignInHandler = () => {
+        signInWithGoogle()
         
 
     }
