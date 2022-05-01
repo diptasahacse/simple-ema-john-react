@@ -43,7 +43,7 @@ const Shop = () => {
                     <h2 className='my-3'>All Products</h2>
                     <div className="row g-4">
                         {
-                            products.map(product => <Product key={product.id} addToCartHandler={addToCartHandler} product={product}></Product>)
+                            products.map(product => <Product key={product._id} addToCartHandler={addToCartHandler} product={product}></Product>)
                         }
                     </div>
 
